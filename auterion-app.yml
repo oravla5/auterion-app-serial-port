@@ -1,0 +1,21 @@
+auterion-api-version: 1
+auterion-app-base: v2
+
+app-name: serial-port-python
+app-version: 1.0.0
+app-author: com.auterion
+
+target-platform: [ainode]
+
+services:
+  serial-port: 
+    build: services/serial_port
+
+compose-override:
+  version: '2.4'
+  services:
+    serial-port:
+      volumes:
+        - /dev/ttyTHS0:/dev/ttyTHS0
+      device_cgroup_rules:
+        - 'c 238:* rmw'
